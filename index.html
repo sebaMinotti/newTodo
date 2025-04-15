@@ -2,71 +2,81 @@
 <html lang="en">
 <head>
     <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#ffffff"/>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="ToDoApp">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="icons/icon-192x192.png">
-
+    <meta name="theme-color" content="#ffffff"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ToDoApp">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./font2/css/all.min.css">
+    <link rel="stylesheet" href="font2/css/all.min.css">
     <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <title>La TuaLista</title>
 </head>
 <body>
-      <div id="app">
-         <div class="container">
-            <h1>LA TUA LISTA</h1>
-            <div class="containerBox">
-                <div class="box">
-                    <div class="title">
-                        <h3>LISTA</h3>
-                        
-                    </div>
-                    <h4 style="font-family: Montserrat;text-align: center;align-items: center; color: white;" v-if="lista.length===0"> NESSUNA VOCE IN LISTA</h4>
-                    <ul>
-                        <li  v-for="(faccenda, index) in lista"><span>{{faccenda}}</span><i @click="myTodo(index,fatte)"  class="fa-solid fa-user-check fatto"></i> <i @click="myTodo(index,nonFatte)" class="fa-solid fa-user-xmark nonFatto"></i><i style="position: absolute; right: 80px;color: darkorange;" @click="myTodo(index,rimandate)" class="fa-solid fa-clock"></i></li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <div class="title">
-                        <h3>ACCETTATE</h3>
 
-                    </div>
-                    <ul>
-                        <li v-for="(faccenda, index) in fatte"><span>{{faccenda}}</span></li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <div class="title">
-                        <h3>RIMANDATE</h3>
-                    </div>
-                    <ul>
-                        <li  v-for="(faccenda, index) in rimandate" ><span>{{faccenda}}</span><i @click="eseguite(index)"  class="fa-solid fa-user-check fatto"></i><i @click="cancellate(index)" class="fa-solid fa-user-xmark nonFatto"></i></li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <div class="title">
-                        <h3>ELIMINATE</h3>
-                    </div>
-                    <ul>
-                        <li v-for="(faccenda, index) in nonFatte"><span>{{faccenda}}</span></li>
-                    </ul>
-                </div>
+    <div id="app">
+          <div class="containerApp">
+            <div class="logo">
+                 <img src="icons/icon-192x192.png" alt="logo">
             </div>
             <div class="input">
-                <input @keyup.enter="aggiungi" type="text" name="newTodo"  placeholder="Aggiungi alla lista" v-model="newTodo"   id="newTodo" > 
-                <button @click="cancellaTutto">Cancella tutto</button>
-               
+                <div style="border-radius: 6px; margin-top: 10px;" class="input-group mb-3">
+                    <button @click="aggiungi" class="btn btn-outline-secondary" type="button" id="button-addon1"><span style="color: wheat;">Aggiungi</span></button>
+                    <input v-model="newTodo" type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                  </div>
             </div>
-
-        </div>
-         </div>
+            <div class="boxTask">
+                <div class="title">
+                    <h3>Aggiungi Task</h3>
+                </div>
+                <ul>
+                    <li v-for="(faccenda, index) in lista"><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check"></i> <i style="position: absolute;right: 35px;" class="fa-solid fa-square-xmark"></i> <i  style="position: absolute;right: 60px;" class="fa-solid fa-clock-rotate-left"></i>{{faccenda}} <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank">[Portami Li]</a></li>
+               
+                </ul>
+            </div>
+            <div class="boxTask">
+                <div class="title">
+                    <h3>Task Completate</h3>
+                </div>
+                <ul>
+                    <li>piscina<i style="position: absolute;right: 10px;" class="fa-regular fa-square-check"></i> <i style="position: absolute;right: 35px;" class="fa-solid fa-square-xmark"></i> <i  style="position: absolute;right: 60px;" class="fa-solid fa-clock-rotate-left"></i></li>
+               
+                </ul>
+            </div>
+            <div class="boxTask">
+                <div class="title">
+                    <h3>Task rimandate</h3>
+                </div>
+                <ul>
+                    <li>piscina<i style="position: absolute;right: 10px;" class="fa-regular fa-square-check"></i> <i style="position: absolute;right: 35px;" class="fa-solid fa-square-xmark"></i> <i  style="position: absolute;right: 60px;" class="fa-solid fa-clock-rotate-left"></i></li>
+               
+                </ul>
+            </div>
+            <div class="boxTask">
+                <div class="title">
+                    <h3>Task eliminate</h3>
+                </div>
+                <ul>
+                    <li>piscina<i style="position: absolute;right: 10px;" class="fa-regular fa-square-check"></i> <i style="position: absolute;right: 35px;" class="fa-solid fa-square-xmark"></i> <i  style="position: absolute;right: 60px;" class="fa-solid fa-clock-rotate-left"></i></li>
+               
+                </ul>
+            </div>
+            
+          </div>
+      
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
 
       
     <script src="main.js"></script>

@@ -1,60 +1,40 @@
-const app = Vue.createApp({
+const app  = Vue.createApp({
     data(){
         return{
-            newTodo:'',
-            lista:[],
-            fatte:[],
-            nonFatte:[],
-            rimandate:[],
+             lista:[],
+             newTodo:'',
         }
     },
-    methods: {
-           aggiungi:function(){
-            if(!this.lista.includes(this.newTodo)){
-                  if(this.newTodo.trim()===''){
-                       alert('non lasciare campi vuoti ')
-                    return    
-                
-                  }
-                this.lista.push(this.newTodo);
-                this.newTodo=''
-            }
-           },
-           myTodo:function(index,array,){
-            faccenda = this.lista[index];
-            this.array=array
-            if(!array.includes(faccenda)){
-                array.push(faccenda);
-                this.lista.splice(index,1)
-                
-                
-            }
-           },
-           cancellaTutto: function () {
-            if (confirm("Sei sicuro di voler cancellare tutte le liste?")) {
-                this.fatte = [];
-                this.nonFatte = [];
-                this.lista = [];
-            }
+        methods: {
+             aggiungi:function(){
+                if(!this.lista.includes(this.newTodo)){
+                    if (this.newTodo.trim() === '') {
+                        alert('non lasciare campi vuoti ');
+                        return;
+                    }
+                    this.lista.push(this.newTodo);
+                    this.newTodo=''
+                }
+             },
+    
+             mostraMappe:function(faccenda){
+                const parolaChiave=['palestra','supermercato','banca','farmacia']
+                return parolaChiave.some(parola=>faccenda.toLowerCase().includes(parola))
+             },
+             generaLinkMappe:function(faccenda){
+                const query= encodeURIComponent(faccenda);
+                if(/iphone|ipad|/.test(navigator.userAgent)){
+                    return`maps://?q=${query}`;
+                } else {
+                    return `https://www.google.com/maps/search/?api=1&query=${query}`;
+                }
+             }
         },
-        eseguite:function(index){
-            if(!this.fatte.includes(this.rimandate[index])){
-                this.fatte.push(this.rimandate[index])
-                this.rimandate.splice(index,1)
-            }
+        mounted() {
+            
         },
-        cancellate:function(index){
-            if(!this.nonFatte.includes(this.rimandate[index])){
-                this.nonFatte.push(this.rimandate[index])
-                this.rimandate.splice(index,1)
-            }
-        }
-
-        
-    },
-    mounted() {
-        
-    },
-})
-
-app.mount('#app')
+    
+    })
+    
+    
+    app.mount("#app");
