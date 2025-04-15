@@ -38,7 +38,7 @@
                     <h3>Aggiungi Task</h3>
                 </div>
                 <ul>
-                    <li v-for="(faccenda, index) in lista"><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check"></i> <i style="position: absolute;right: 35px;" class="fa-solid fa-square-xmark"></i> <i  style="position: absolute;right: 60px;" class="fa-solid fa-clock-rotate-left"></i>{{faccenda}} <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank">[Portami Li]</a></li>
+                    <li v-for="(faccenda, index) in lista"><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;right: 40px;" class="fa-solid fa-square-xmark"></i> <i @click="taskRimandate(index)" style="position: absolute;right: 70px;" class="fa-solid fa-clock-rotate-left"></i>{{faccenda}} <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank">Portami Li</a></li>
                
                 </ul>
             </div>
@@ -47,7 +47,8 @@
                     <h3>Task Completate</h3>
                 </div>
                 <ul>
-                    <li><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check"></i> <i style="position: absolute;right: 35px;" class="fa-solid fa-square-xmark"></i> <i  style="position: absolute;right: 60px;" class="fa-solid fa-clock-rotate-left"></i></li>
+                    <li v-for="(faccenda, index) in fatte"><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;right: 40px;" class="fa-solid fa-square-xmark"></i> <i @click="taskRimandate(index)" style="position: absolute;right: 70px;" class="fa-solid fa-clock-rotate-left"></i>{{faccenda}} <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank">Portami Li</a></li>
+
                
                 </ul>
             </div>
@@ -56,7 +57,7 @@
                     <h3>Task rimandate</h3>
                 </div>
                 <ul>
-                    <li><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check"></i> <i style="position: absolute;right: 35px;" class="fa-solid fa-square-xmark"></i> <i  style="position: absolute;right: 60px;" class="fa-solid fa-clock-rotate-left"></i></li>
+                    <li v-for="(faccenda, index) in rimandate"><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;right: 40px;" class="fa-solid fa-square-xmark"></i> <i @click="taskRimandate(index)" style="position: absolute;right: 70px;" class="fa-solid fa-clock-rotate-left"></i>{{faccenda}} <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank">Portami Li</a></li>
                
                 </ul>
             </div>
@@ -65,7 +66,9 @@
                     <h3>Task eliminate</h3>
                 </div>
                 <ul>
-                    <li><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check"></i> <i style="position: absolute;right: 35px;" class="fa-solid fa-square-xmark"></i> <i  style="position: absolute;right: 60px;" class="fa-solid fa-clock-rotate-left"></i></li>
+                  
+                    <li v-for="(faccenda, index) in nonFatte"><i style="position: absolute;right: 10px;" class="fa-regular fa-square-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;right: 40px;" class="fa-solid fa-square-xmark"></i> <i @click="taskRimandate(index)" style="position: absolute;right: 70px;" class="fa-solid fa-clock-rotate-left"></i>{{faccenda}} <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank">Portami Li</a></li>
+
                
                 </ul>
             </div>

@@ -2,6 +2,9 @@ const app  = Vue.createApp({
     data(){
         return{
              lista:[],
+             fatte:[],
+             nonFatte:[],
+             rimandate:[],
              newTodo:'',
         }
     },
@@ -15,6 +18,27 @@ const app  = Vue.createApp({
                     this.lista.push(this.newTodo);
                     this.newTodo=''
                 }
+             },
+             taskFatte:function(index){
+              
+                  if(!this.fatte.includes(this.lista[index])){
+                         this.fatte.push(this.lista[index])
+                         this.lista.splice(index,1)
+                  }
+             },
+             taskNonFatte:function(index){
+              
+                  if(!this.nonFatte.includes(this.lista[index])){
+                         this.nonFatte.push(this.lista[index])
+                         this.lista.splice(index,1)
+                  }
+             },
+             taskRimandate:function(index){
+              
+                  if(!this.rimandate.includes(this.lista[index])){
+                         this.rimandate.push(this.lista[index])
+                         this.lista.splice(index,1)
+                  }
              },
     
              mostraMappe:function(faccenda){
