@@ -14,6 +14,7 @@ const app  = Vue.createApp({
                 this.nonFatte = [];
                 this.rimandate = [];
                 this.lista = [];
+                this.salva()
               },
             salva() {
                 // Salva tutte le liste in un'unica chiave
