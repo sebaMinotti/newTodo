@@ -45,18 +45,23 @@ const app  = Vue.createApp({
                   }
              },
              taskNonFatte:function(index){
-              
-                  if(!this.nonFatte.includes(this.lista[index])){
-                         this.nonFatte.push(this.lista[index])
                          this.lista.splice(index,1)
+                         this.rimandate.splice(index,1)
                          this.salva();
+                  
+             },
+             eliminaRimandate:function(index){
+                  if(!this.fatte.includes(this.rimandate[index])){
+                     this.fatte.push(this.rimandate[index])
+                           this.rimandate.splice(index,1)
                   }
              },
              taskRimandate:function(index){
-              
+                    // Rimuovi il task da tutte le altre liste
+               
                   if(!this.rimandate.includes(this.lista[index])){
                          this.rimandate.push(this.lista[index])
-                         this.lista.splice(index,1)
+                         this.lista.splice(index,1);
                          this.salva();
                   }
              },
@@ -64,7 +69,7 @@ const app  = Vue.createApp({
              mostraMappe: function(faccenda) {
                 if (!faccenda || typeof faccenda !== 'string') return false;
               
-                const parolaChiave = ['palestra', 'supermercato', 'banca', 'farmacia', 'ristorante', 'pizzeria'];
+                const parolaChiave = ['palestra', 'supermercato', 'banca', 'farmacia', 'ristorante', 'pizzeria','pub','dentista','ospedale','medico','canile','gattile'];
                 return parolaChiave.some(parola => faccenda.toLowerCase().includes(parola));
               },
               

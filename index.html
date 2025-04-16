@@ -39,7 +39,7 @@
                     <h3>Aggiungi Task</h3>
                 </div>
                 <ul>
-                    <li v-for="(faccenda, index) in lista"><i style="position: absolute;left: 8px;color: green;top: 10px;" class="fa-solid fa-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;left: 45px;color: red; top: 10px;" class="fa-solid fa-trash"></i> <i @click="taskRimandate(index)" style="position: absolute;left: 80px;color: darkorange;top: 10px;" class="fa-solid fa-clock"></i>{{faccenda}} <br> <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank"><i class="fa-solid fa-location-dot"></i></a></li>
+                    <li v-for="(faccenda, index) in lista"><i style="position: absolute;right: 8px;color: rgb(61, 255, 61);top: 10px;" class="fa-solid fa-circle-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;right: 45px;color: red; top: 10px;" class="fa-solid fa-trash"></i> <i @click="taskRimandate(index)" style="position: absolute;right: 80px;color: darkorange;top: 10px;" class="fa-solid fa-clock"></i>{{faccenda}} <br> <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank"><i class="fa-solid fa-location-dot"></i></a></li>
                
                 </ul>
             </div>
@@ -48,7 +48,7 @@
                     <h3>Task Completate</h3>
                 </div>
                 <ul>
-                    <li v-for="(faccenda, index) in fatte"><i style="position: absolute;left: 8px;color: green;top: 10px;" class="fa-solid fa-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;left: 45px;color: red; top: 10px;" class="fa-solid fa-trash"></i> <i @click="taskRimandate(index)" style="position: absolute;left: 80px;color: darkorange;top: 10px;" class="fa-solid fa-clock"></i>{{faccenda}} <br> <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank"><i class="fa-solid fa-location-dot"></i></a></li>
+                   <li v-for="faccenda in fatte">{{faccenda}}</li>
                
                 </ul>
             </div>
@@ -57,19 +57,10 @@
                     <h3>Task rimandate</h3>
                 </div>
                 <ul>
-                    <li v-for="(faccenda, index) in rimandate"><i style="position: absolute;left: 8px;color: green;top: 10px;" class="fa-solid fa-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;left: 45px;color: red; top: 10px;" class="fa-solid fa-trash"></i> <i @click="taskRimandate(index)" style="position: absolute;left: 80px;color: darkorange;top: 10px;" class="fa-solid fa-clock"></i>{{faccenda}} <br> <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank"><i class="fa-solid fa-location-dot"></i></a></li>               
+                    <li v-for="(faccenda, index) in rimandate"><i style="position: absolute;right: 8px;color: rgb(41, 224, 41);top: 10px;" class="fa-solid fa-circle-check" @click="eliminaRimandate(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;right: 45px;color: red; top: 10px;" class="fa-solid fa-trash"></i>{{faccenda}}</li>
                 </ul>
             </div>
-            <div class="boxTask">
-                <div class="title">
-                    <h3>Task eliminate</h3>
-                </div>
-                <ul>
-                  
-                    <li v-for="(faccenda, index) in nonFatte"><i style="position: absolute;left: 8px;color: green;top: 10px;" class="fa-solid fa-check" @click="taskFatte(index)"></i> <i @click="taskNonFatte(index)" style="position: absolute;left: 45px;color: red; top: 10px;" class="fa-solid fa-trash"></i> <i @click="taskRimandate(index)" style="position: absolute;left: 80px;color: darkorange;top: 10px;" class="fa-solid fa-clock"></i>{{faccenda}} <br> <a v-if="mostraMappe(faccenda)" :href="generaLinkMappe(faccenda)"target="_blank"><i class="fa-solid fa-location-dot"></i></a></li>
-               
-                </ul>
-            </div>
+
             
           </div>
       
@@ -80,6 +71,3 @@
 </html>
 
       
-    <script src="main.js"></script>
-</body>
-</html>
